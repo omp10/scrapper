@@ -1,0 +1,22 @@
+services:
+  redis:
+    image: redis:7-alpine
+    ports: ['6379:6379']
+    # Cache and job queue. Losing it costs money and in-flight jobs, not data.
+    command: redis-server --save '' --appendonly no
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      retries: 10
+
+  mongo:
+    image: mongo:7
+    ports: ['27017:27017']
+    volumes: ['mongo-data:/data/db']
+    healthcheck:
+      test: ['CMD', 'mongosh', '--quiet', '--eval', "db.runCommand('ping').ok"]
+      interval: 5s
+      retries: 10
+
+volumes:
+  mongo-data:

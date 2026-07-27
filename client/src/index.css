@@ -1,0 +1,19 @@
+@import 'tailwindcss';
+
+/* Tailwind v4 defaults dark: to the OS setting; we drive it from a class so
+   the toggle can override the OS. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  color-scheme: light dark;
+}
+
+/* Sweeps the top progress bar left→right while any request is in flight. */
+@keyframes loadbar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
