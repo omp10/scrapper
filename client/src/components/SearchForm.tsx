@@ -161,15 +161,15 @@ export default function SearchForm({
           // Google hard-caps at 60 and bills per page of 20. OSM has no cap and
           // costs nothing, so there's no reason to ask for fewer.
           min={20}
-          max={isFree ? 500 : 60}
+          max={isFree ? 1000 : 60}
           step={20}
-          value={Math.min(input.maxResults, isFree ? 500 : 60)}
+          value={Math.min(input.maxResults, isFree ? 1000 : 60)}
           onChange={(e) => setInput({ maxResults: Number(e.target.value) })}
           className={`w-full ${isFree ? 'accent-emerald-600' : 'accent-indigo-600'}`}
         />
         <p className="mt-1 text-[11px] text-slate-500 dark:text-slate-500">
           {isFree
-            ? 'Free — ask for as many as you want. 500 is the practical ceiling per query.'
+            ? 'Free — ask for as many as you want. 1000 is the practical ceiling per query.'
             : 'Google caps a search at 60 and bills per page of 20. Use tiling to go beyond.'}
         </p>
       </div>
